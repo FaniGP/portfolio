@@ -1,0 +1,455 @@
+/* Variables */
+:root {
+  --primary: #de5f5f;
+  --black: #555;
+  --grey: #343436;
+  --lightgrey: #959595;
+  --font-serif: "ff-meta-serif-web-pro", serif;
+  --font-sans: "nimbus-sans", sans-serif;
+  --transition: all 0.3s cubic-bezier(0.05, 0.69, 0.14, 1);
+}
+
+/* Estilos */
+html {
+  box-sizing: border-box;
+  font-family: var(--font-serif);
+  color: var(--black);
+  font-size: 16px;
+}
+
+@for $i from 1 through 20 {
+  @media (min-width: #{6.25 * $i}em) {
+    html {
+      font-size: #{16 + $i}px;
+    }
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*------------- Menú vertical -----------------*/
+.side {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  width: 50px;
+  border-right: 1px dashed rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.5);
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.0875rem;
+  font-size: 10px;
+  transition: var(--transition);
+}
+
+.side:hover {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.side__inner {
+  position: relative;
+  height: 100%;
+  white-space: nowrap;
+}
+
+.side a {
+  color: inherit;
+  word-spacing: 0;
+  transition: var(--transition);
+}
+
+.side .top,
+.side .bottom {
+  position: absolute;
+  left: 0;
+  transform: rotate(-90deg) perspective(1px);
+  transform-origin: 50px 50px;
+  height: 50px;
+  line-height: 50px;
+  white-space: nowrap;
+  word-spacing: 0.5rem;
+}
+
+/*------ FANI GUTIERREZ - SIDE BAR -------*/
+.side .top {
+  top: 25px;
+  text-align: right;
+  color: black;
+}
+
+/*------- LINKEDIN / SPOTIFY / EMAIL - SIDE BAR -------*/
+.side .bottom {
+  top: auto;
+  bottom: 75px;
+}
+
+.side .bottom:hover a {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.side .bottom:hover a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/*---------- Menú superior ----------*/
+.anchornav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*---------- enlaces menú superior --------*/
+.anchornav li {
+  display: block;
+}
+
+.anchornav li::after {
+  content: "";
+  width: 1.3rem;
+  display: block;
+  height: 2px;
+  background: black;
+}
+
+.anchornav li:last-child::after {
+  display: none;
+}
+
+.anchornav a {
+  display: block;
+  padding: 1em 0;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  color: inherit;
+  transition: var(--transition);
+}
+
+.anchornav a span {
+  display: inline;
+  padding: 0.5em 0 0;
+  opacity: 0.3;
+  letter-spacing: normal;
+  font-family: var(--font-serif);
+  text-transform: none;
+}
+
+.anchornav a:hover {
+  color: var(--primary);
+}
+
+.anchornav a:hover span {
+  opacity: 1;
+  color: #181818;
+}
+
+/*------------------- GALERÍA------------*/
+
+.carousel {
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-radius: 6px;
+  margin-top: 5%;
+  margin-bottom: 3%;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.3s ease;
+  gap: 1%;
+}
+
+.carousel img {
+  width: 50%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.carousel-container {
+  position: relative;
+}
+
+.carousel-dots_desktop {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.carousel-dot.active {
+  background: #555;
+}
+
+/*--- Estilos para mobile ---*/
+@media (max-width: 480px) {
+  .carousel-inner {
+    white-space: nowrap;
+  }
+
+  .carousel-inner img {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+  }
+}
+
+/*--------IMÁGENES SUELTAS----*/
+
+.border {
+  border-radius: 6px;
+  margin-top: 5%;
+  max-width: 600px;
+}
+
+/*---------------- SECCIONES -----------------*/
+.section {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  min-height: 60vh;
+  width: 100%;
+  align-content: center;
+  padding: 20vh 50px 20vh 75px;
+}
+/*-------- SECCIÓN SEPARADOR (FONDO de separador) ---------*/
+.section svg {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 50px;
+  /*background-color:red;*/
+}
+
+/*---------------- Secciones textos -----------------*/
+.section .section__inner {
+  height: 100%;
+  max-width: 800px;
+  margin: auto auto auto 0;
+}
+
+/* SECCIONES */
+
+.section.section_one {
+  background-image: url(https://www.design184.com/wp-content/uploads/2023/05/img_02.jpg);
+  color: #333333;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 600px;
+}
+
+@media (max-width: 480px) {
+  h1,
+  h2 {
+    font-size: 2rem !important;
+  }
+
+  .section.section_one {
+    background-image: url(https://www.design184.com/wp-content/uploads/2023/05/img_02_mobile.jpg);
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+
+
+/*--- ABOUT ME ---*/
+.section.section_two {
+  background-color: #fafafa;
+  color: var(--black);
+}
+
+/*--- GRAPHIC ---*/
+.section.section_three {
+  background-color: #f2f0ee;
+  color: var(--black);
+}
+/*--- Separador sección superior a Graphic ---*/
+.section.section_three svg {
+  top: -50px;
+  fill: #f2f0ee; /*color igual a la sección*/
+}
+
+/*--- WEB ---*/
+.section.section_four {
+  background-color: #de5f5f;
+  color: white;
+}
+
+/*--- Separador sección superior a Web ---*/
+.section.section_four svg {
+  top: -50px;
+  fill: #de5f5f; /*color igual a la sección*/
+}
+
+/*--- APP ---*/
+.section.section_five {
+  background-color: #8fa5b3;
+  color: white;
+}
+
+/*--- Separador sección superior a APP ---*/
+.section.section_five svg {
+  top: -50px;
+  fill: #8fa5b3; /*color igual a la sección*/
+}
+
+/*---- Separador sección inferior a APP ---*/
+.section.section_six svg {
+  top: -50px;
+  fill: #8fa5b3;
+}
+
+/*--- CONTACT ---*/
+.section.section_six {
+  background-color: #333333;
+  color: white;
+}
+
+/*--- TIPOGRAFÍA ---*/
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h5 {
+  font-family: var(--font-sans);
+  font-weight: bold;
+  margin: 0 0 0.3em;
+  line-height: 1;
+}
+
+h1,
+.h1,
+h2,
+.h2 {
+  font-size: 1.2rem;
+}
+
+@media (min-width: 30rem) {
+  h1,
+  .h1,
+  h2,
+  .h2 {
+    font-size: 2.5rem;
+  }
+}
+
+h1 a,
+.h1 a,
+h2 a,
+.h2 a {
+  color: inherit;
+}
+
+h1 a:hover,
+.h1 a:hover,
+h2 a:hover,
+.h2 a:hover {
+  border-bottom: 0.1875rem solid;
+}
+
+h1 span,
+.h1 span {
+  color: var(--primary);
+}
+
+h2,
+.h2 {
+  font-size: 1.2rem;
+}
+
+@media (min-width: 30rem) {
+  h2,
+  .h2 {
+    font-size: 2.5rem;
+  }
+}
+/*------PRE-TÍTULOS-----*/
+.pre {
+  display: inline-block;
+  font-size: 12px;
+  margin: 0;
+  opacity: 0.8;
+  letter-spacing: 1.4px;
+  word-spacing: 0.2rem;
+  text-transform: uppercase;
+  margin-bottom: 1em;
+  color: inherit;
+}
+
+.pre span {
+  font-size: 0.9em;
+  margin-right: 0.4em;
+  opacity: 0.5;
+}
+
+.pre:hover {
+  opacity: 1;
+}
+
+p {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin-top: 32px !important;
+}
+
+@media (min-width: 30rem) {
+  p {
+    font-size: 0.875rem;
+  }
+}
+
+p a {
+  font-weight: bold;
+  color: inherit;
+}
+
+p a:hover {
+  border-bottom: 0.1875rem solid;
+}
+
+.lead {
+  display: block;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+@media (min-width: 30rem) {
+  .lead {
+    font-size: 1rem;
+  }
+}
